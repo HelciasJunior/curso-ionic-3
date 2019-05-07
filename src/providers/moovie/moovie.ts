@@ -11,14 +11,17 @@ import { Http } from '@angular/http';
 @Injectable()
 export class MoovieProvider {
 
-  private baseApiPath = 'https://api.themoviedb.org/3/';
+  private baseApiPath = 'https://api.themoviedb.org/3';
 
   constructor(public http: Http) {
     console.log('Hello MoovieProvider Provider');
   }
 
   getLaterstMovies(){
-    return this.http.get(this.baseApiPath + "movie/latest");
+    return this.http.get(this.baseApiPath + "/movie/popular?"+'api_key='+this.getApiKey());
   }
 
+  getApiKey(): string{
+    return '61d07a8be92f6c02d8f7b4dbad451c5b';
+  }
 }

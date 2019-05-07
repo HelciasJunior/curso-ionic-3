@@ -28,6 +28,7 @@ export class FeedPage {
     time_comment: "11h ago"
   }
 
+  public lista_filmes = new Array<any>();
   public nome_usuario:string = "Helcias Junior do código";
 
   constructor(
@@ -45,7 +46,11 @@ export class FeedPage {
   ionViewDidLoad() {
     this.movieProvider.getLaterstMovies().subscribe(
       data=>{
-        console.log(data);
+        const response = (data as any);
+        const objeto_retorno = JSON.parse(response._body);
+
+        this.lista_filmes = objeto_retorno.results;
+        console.log(this.lista_filmes);
       },error =>{
         console.log(error);
       }
